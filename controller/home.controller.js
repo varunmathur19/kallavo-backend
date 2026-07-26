@@ -51,15 +51,27 @@ export const homeproductcontroller = async (req, res) => {
 
 export const getHomeProducts = async (req, res) => {
   try {
-    const products = await HomeProduct.find().sort({
-      createdAt: -1,
-    });
+    const page = parseInt(req.query.page) || 1;
+    const limit = 8; // Har page par 8 products
+
+    const skip = (page - 1) * limit;
+
+    const totalProducts = await HomeProduct.countDocuments();
+
+    const products = await HomeProduct.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     return res.status(200).json({
       success: true,
       message: "Home Products Fetch Successfully",
+      currentPage: page,
+      totalPages: Math.ceil(totalProducts / limit),
+      totalProducts,
       products,
     });
+
   } catch (error) {
     return res.status(500).json({
       success: false,
