@@ -1,6 +1,6 @@
 import express from "express";
 import { contactForm, getContacts } from "../controller/contact.controller.js";
-import { getHomeProducts, homeproductcontroller } from "../controller/home.controller.js";
+import { editHomeProductController, getHomeProducts, homeproductcontroller } from "../controller/home.controller.js";
 import { upload } from "../middleware/upload.js";
 
 const router = express.Router();
@@ -24,6 +24,10 @@ router.post(
 router.get(
     "/home-page-product",
     getHomeProducts
+);
+router.put(
+  "/edit-home-product/:id",
+  editHomeProductController
 );
 
 

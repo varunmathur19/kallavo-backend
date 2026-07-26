@@ -26,6 +26,10 @@ const HomeProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    outOfStock: {
+  type: Boolean,
+  default: false
+},
 
     sizes: [
       {
