@@ -1,7 +1,8 @@
 import express from "express";
 import { contactForm, getContacts } from "../controller/contact.controller.js";
-import { editHomeProductController, getHomeProducts, homeproductcontroller } from "../controller/home.controller.js";
+import { editHomeProductController, getHomeProducts, homeproductcontroller ,  } from "../controller/home.controller.js";
 import { upload } from "../middleware/upload.js";
+import { collectionhome, getCollectionHome } from "../controller/collectionhome.controller.js";
 
 const router = express.Router();
 
@@ -28,6 +29,19 @@ router.get(
 router.put(
   "/edit-home-product/:id",
   editHomeProductController
+);
+
+
+//home page collection image api 
+router.post(
+  "/collection-home",
+  upload.single("image"),
+  collectionhome
+);
+
+router.get(
+  "/collection-home",
+  getCollectionHome
 );
 
 
