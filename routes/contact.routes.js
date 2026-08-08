@@ -3,9 +3,12 @@ import { contactForm, getContacts } from "../controller/contact.controller.js";
 import { editHomeProductController, getHomeProducts, homeproductcontroller ,  } from "../controller/home.controller.js";
 import { upload } from "../middleware/upload.js";
 import { collectionhome, getCollectionHome } from "../controller/collectionhome.controller.js";
+import { loginController } from "../controller/auth.controller.js";
 
 const router = express.Router();
 
+
+router.post("/login",loginController);
 router.post("/contact", contactForm);
 router.get("/getcontacts", getContacts);
 
